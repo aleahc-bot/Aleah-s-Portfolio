@@ -392,6 +392,43 @@ p{margin:0}
 .trio img{width:100%;height:100%;object-fit:cover;border-radius:12px;border:1px solid var(--line);display:block}
 @media (max-width:640px){.peek{grid-template-columns:repeat(2,minmax(0,1fr));height:auto}.peek .tile{aspect-ratio:1}.c-work,.c-motion{min-height:0}.r2{height:180px}}
 
+
+/* Premium home touches */
+.stats{display:flex;gap:clamp(18px,3vw,44px);margin:26px 0 0;padding:18px 0 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.stats div{display:flex;flex-direction:column;gap:2px}
+.stats dt{font-family:var(--font-head);font-size:clamp(26px,2.6vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.stats dt::after{content:"+";color:var(--burgundy);font-weight:500;margin-left:1px}
+.stats dd{margin:0;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.stats{animation:fadeup .8s cubic-bezier(.2,.7,.2,1) .55s both}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--rd,0ms)}
+.rv.in{opacity:1;transform:none}
+.bento>.card{animation:none}
+.card.link{transition:border-color .3s,box-shadow .4s,transform .4s cubic-bezier(.2,.7,.2,1)}
+.card.link:hover{transform:translateY(-3px);box-shadow:0 22px 44px -26px rgba(60,20,30,.35)}
+.card .ico{transition:background .3s,color .3s,border-color .3s}
+.card.link:hover .ico{background:var(--burgundy);color:#fff;border-color:var(--burgundy)}
+.reel{margin-top:44px}
+.reel-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.reel-head h2{font-size:clamp(24px,2.4vw,32px);letter-spacing:-.03em;margin-top:6px}
+.reel-track{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.reel-row{display:flex;gap:16px;width:max-content;animation:reelmove 70s linear infinite}
+.reel-track:hover .reel-row{animation-play-state:paused}
+@keyframes reelmove{to{transform:translateX(-50%)}}
+.reel-item{position:relative;width:clamp(170px,15vw,220px);aspect-ratio:4/5;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--surface-2);cursor:pointer;flex:none;padding:0}
+.reel-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s}
+.reel-item span{position:absolute;left:10px;right:10px;bottom:10px;padding:8px 10px;border-radius:10px;background:var(--glass);backdrop-filter:blur(8px);font-size:12.5px;font-weight:600;color:var(--ink);text-align:left;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.reel-item:hover img,.reel-item:focus-visible img{transform:scale(1.06)}
+.reel-item:hover span,.reel-item:focus-visible span{opacity:1;transform:none}
+@media (hover:none){.reel-item span{opacity:1;transform:none}}
+.cta-band{position:relative;overflow:hidden}
+.cta-band::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-45%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-18deg);animation:sheen 7s ease-in-out 2s infinite;pointer-events:none}
+html[data-mode="dark"] .cta-band::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.06),transparent)}
+@keyframes sheen{0%,70%{left:-45%}100%{left:120%}}
+@media (max-width:640px){.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.stats dt{font-size:24px}.stats dd{font-size:9.5px;letter-spacing:.08em}}
+html.calm .rv{opacity:1;transform:none}
+html.calm .reel-row{animation:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.reel-row{animation:none}}
+
 /* Comfort settings */
 .prefs{display:flex;flex-direction:column;gap:clamp(6px,1vh,10px);padding:clamp(9px,1.4vh,14px) 12px;border-radius:16px;background:color-mix(in srgb,var(--bg) 55%,transparent);border:1px solid var(--line)}
 .prefs-h{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
@@ -583,6 +620,12 @@ html.ilock{scroll-behavior:auto!important}
         <div class="eyebrow">Branding · Packaging · Web · Social</div>
         <h1 class="headline" aria-label="Designed with intention"><span class="w" style="--i:0">Designed</span> <span class="w" style="--i:1">with</span> <span class="w ul" style="--i:2"><em>intention</em></span></h1>
         <p class="lede">I design brand identities, product labels, websites and social campaigns for health, wellness and local service businesses. I also handle the reports and client updates that keep every project on schedule.</p>
+        <dl class="stats" id="stats">
+          <div><dt><span data-count="57">0</span></dt><dd>Projects</dd></div>
+          <div><dt><span data-count="9">0</span></dt><dd>Categories</dd></div>
+          <div><dt><span data-count="7">0</span></dt><dd>Live websites</dd></div>
+          <div><dt><span data-count="16">0</span></dt><dd>Animated pieces</dd></div>
+        </dl>
       </div>
       <a class="btn" href="#contact" data-view="contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </div>
@@ -641,6 +684,11 @@ html.ilock{scroll-behavior:auto!important}
           <div class="slot"><div class="trio"><img src="thumb/picatsso.jpg" alt=""><img src="thumb/motionrx-board-1.jpg" alt="" style="object-position:top"><img src="thumb/artroom-floral.jpg" alt=""></div></div>
         </article>
       </div>
+
+      <section class="reel" aria-label="Selected work">
+        <div class="reel-head"><div><span class="eyebrow">Selected work</span><h2>A closer look</h2></div><a class="btn ghost" href="#projects" data-view="projects">View all projects</a></div>
+        <div class="reel-track" id="reeltrack"></div>
+      </section>
 
       <div class="cta-band">
         <div><h2>Have a project in mind</h2><p>Tell me about your brand and what you need next.</p></div>
@@ -1150,6 +1198,29 @@ try{(function(){
 })();}catch(err){ killIntro(); }
 show(location.hash.slice(1)||'home');
 watchVideos(document);
+// Premium home: count-up, reveal, reel
+(function(){
+  const nums=[...document.querySelectorAll('#stats [data-count]')];
+  nums.find(n=>n.dataset.count==='57')&&(nums[0].dataset.count=String(P.length));
+  const vids=P.reduce((a,p)=>a+(p.m[0].t==='vid'?1:0),0); if(nums[3])nums[3].dataset.count=String(vids);
+  if(nums[1])nums[1].dataset.count=String(CATS.length);
+  function count(){ nums.forEach((n,k)=>{ const to=+n.dataset.count; if(isCalm()){n.textContent=to;return;} const t0=performance.now()+k*120, d=1400;
+    const f=t=>{ const x=Math.max(0,Math.min(1,(t-t0)/d)); const e=1-Math.pow(1-x,3); n.textContent=Math.round(to*e); if(x<1)requestAnimationFrame(f); }; requestAnimationFrame(f); }); }
+  const startCount=()=>{ if(document.documentElement.classList.contains('hold')){ setTimeout(startCount,300); return; } setTimeout(count,500); };
+  startCount();
+  // reel
+  const pick=['motionrx','luvira','wellness-gold','site-trimviews','jovirx','prospect-brand','email-skin','artroom-posters','novamdk-social','site-aquamarine','picatsso','web-stayinmotion','peptidelounge','propello'].filter(id=>byId[id]);
+  const item=id=>{const q=byId[id],m=q.m[0];return `<button class="reel-item" type="button" data-open="${id}" aria-label="Open ${esc(q.t)}"><img src="${(m.t==='vid'?m.poster:m.src).replace('img/','thumb/')}" alt="" loading="lazy" style="object-position:${q.fit==='top'?'top':'center'}"><span>${esc(q.t)}</span></button>`};
+  const row=pick.map(item).join(''); $('#reeltrack').innerHTML=`<div class="reel-row">${row}${row.replace(/<button /g,'<button tabindex="-1" aria-hidden="true" ')}</div>`;
+  // reveal on scroll
+  const els=[...document.querySelectorAll('#v-home .bento>.card,#v-home .reel,#v-home .cta-band')];
+  els.forEach((e,k)=>{ e.classList.add('rv'); e.style.setProperty('--rd',(e.closest('.bento')?(k%3)*90:0)+'ms'); });
+  if(!('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('in')); return; }
+  const ob=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); ob.unobserve(en.target);} }),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(e=>ob.observe(e));
+  setTimeout(()=>els.forEach(e=>{ const r=e.getBoundingClientRect(); if(r.top<innerHeight) e.classList.add('in'); }),50);
+})();
+
 try{ sessionStorage.setItem('ac-intro','1'); }catch(_){}
 if(returning) LS.set('ac-seen',Date.now());
 if(returning&&freshSession&&lastSeen&&byId[lastSeen.id]&&!location.hash.startsWith('#project-')){
