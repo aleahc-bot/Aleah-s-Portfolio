@@ -154,24 +154,7 @@ p{margin:0}
 .card.link:hover .more,.card.link:focus-visible .more{opacity:1;transform:none}
 @media (hover:none){.more{opacity:1;transform:none}}
 .c-work{grid-column:span 7}
-.peek{position:relative;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:10px;margin-top:auto;padding-top:8px;-webkit-mask-image:linear-gradient(90deg,#000 70%,transparent);mask-image:linear-gradient(90deg,#000 70%,transparent)}
-.peek img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
-.peek img:first-child{aspect-ratio:auto;height:100%}
-.c-work:hover .peek img:nth-child(2){transform:translateY(-6px)}
-.c-work:hover .peek img:nth-child(3){transform:translateY(-10px)}
-.c-work:hover .peek img:nth-child(4){transform:translateY(-6px)}
-.peek .plus{position:absolute;right:8px;bottom:10px;-webkit-mask-image:none}
 .c-tools{grid-column:span 4}
-.fan{position:relative;height:150px;margin-top:auto}
-.fan img{position:absolute;width:72%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:10px;border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
-.fan img:nth-child(1){left:0;top:24px;transform:rotate(-4deg)}
-.fan img:nth-child(2){right:0;top:18px;transform:rotate(4deg)}
-.fan img:nth-child(3){left:14%;top:0;z-index:2}
-.c-sites:hover .fan img:nth-child(1){transform:rotate(-7deg) translateX(-6px)}
-.c-sites:hover .fan img:nth-child(2){transform:rotate(7deg) translateX(6px)}
-.quad{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
-.quad img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface-2)}
-.mini-tools{display:flex;flex-direction:column;gap:12px;margin-top:auto}
 .mt{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:13.5px;align-items:center}
 .mt b{font-weight:600}
 .mt span{color:var(--muted);font-variant-numeric:tabular-nums;font-size:12.5px}
@@ -234,11 +217,6 @@ p{margin:0}
 .svc-ic{display:inline-flex;gap:10px;align-items:center}
 .svc-ic i{width:6px;height:6px;border-radius:2px;background:var(--burgundy);flex:none}
 .about-quote{font-size:15px;color:var(--ink-2);line-height:1.5}
-.cards3{position:relative;height:120px;margin-top:auto}
-.cards3 img{position:absolute;width:86px;height:108px;object-fit:cover;border-radius:10px;border:3px solid var(--bg);box-shadow:var(--shadow);bottom:0}
-.cards3 img:nth-child(1){left:6%;transform:rotate(-8deg)}
-.cards3 img:nth-child(2){left:32%;z-index:2;bottom:8px}
-.cards3 img:nth-child(3){left:58%;transform:rotate(7deg)}
 
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:42px 0 18px}
 .sec-head h2{font-size:26px;letter-spacing:-.025em}
@@ -375,14 +353,44 @@ p{margin:0}
   .bento{padding:10px;gap:12px;border-radius:22px}
   .c-proj{flex-direction:column}
   .c-niche,.c-sites,.c-svc,.c-about,.c-tools{grid-column:span 12}
-  .peek{grid-template-columns:1.3fr 1fr 1fr}
-  .peek img:nth-child(4){display:none}
   .grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
   .meta b{font-size:14px}
   .meta span{font-size:12px}
 }
 @media (max-width:420px){.grid{grid-template-columns:minmax(0,1fr)}}
 
+
+
+/* Home bento: uniform media slots */
+.bento{align-items:stretch}
+.slot{margin-top:auto;padding-top:14px;width:100%}
+.c-work,.c-motion{min-height:400px}
+.peek{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;height:210px}
+.peek .tile{position:relative;border-radius:14px;overflow:hidden;background:var(--surface-2);border:1px solid var(--line)}
+.peek .tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.c-work:hover .peek .tile img{transform:scale(1.04)}
+.peek .tile.more-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(93,20,36,.35),rgba(93,20,36,.82))}
+.peek .tile.more-tile span{position:absolute;inset:0;z-index:1;display:grid;place-items:center;text-align:center;color:#fff;font-family:var(--font-head);font-weight:700;font-size:22px;line-height:1.1}
+.peek .tile.more-tile small{display:block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin-top:4px}
+.r2{height:200px}
+.browser{height:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.browser .bar{height:26px;flex:none;display:flex;align-items:center;gap:5px;padding:0 10px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.browser .bar i{width:7px;height:7px;border-radius:50%;background:var(--line-2)}
+.browser .bar b{margin-left:8px;height:12px;flex:1;max-width:60%;border-radius:6px;background:var(--bg)}
+.browser .scr{position:relative;flex:1;overflow:hidden}
+.browser .scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;animation:xfade 12s infinite}
+.browser .scr img:nth-child(2){animation-delay:4s}.browser .scr img:nth-child(3){animation-delay:8s}
+@keyframes xfade{0%{opacity:0}5%,33%{opacity:1}38%,100%{opacity:0}}
+.niche{display:grid;height:100%;grid-template-columns:1fr 1fr;grid-template-rows:repeat(2,minmax(0,1fr));gap:8px}
+.niche img{width:100%;height:100%;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);display:block;min-height:0}
+.mini-tools{height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:4px 0}
+.mt{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:13.5px;align-items:center}
+.mt b{font-weight:600}
+.mt span{color:var(--muted);font-variant-numeric:tabular-nums;font-size:12.5px}
+.mt .bar{grid-column:1/-1}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:minmax(0,1fr);gap:8px;height:150px}
+.trio img{width:100%;height:100%;object-fit:cover;border-radius:12px;border:1px solid var(--line);display:block}
+@media (max-width:640px){.peek{grid-template-columns:repeat(2,minmax(0,1fr));height:auto}.peek .tile{aspect-ratio:1}.c-work,.c-motion{min-height:0}.r2{height:180px}}
 
 /* Comfort settings */
 .prefs{display:flex;flex-direction:column;gap:clamp(6px,1vh,10px);padding:clamp(9px,1.4vh,14px) 12px;border-radius:16px;background:color-mix(in srgb,var(--bg) 55%,transparent);border:1px solid var(--line)}
@@ -591,7 +599,7 @@ html.ilock{scroll-behavior:auto!important}
           <div class="head-row"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div><span class="more">Explore the work →</span></div>
           <h3>Projects</h3>
           <p class="sub" id="workline"></p>
-          <div class="peek" id="peek"></div>
+          <div class="slot"><div class="peek" id="peek"></div></div>
         </article>
 
         <article class="card link c-motion" data-cat="web" data-sub-go="motion" tabindex="0" role="link" aria-label="See animated work">
@@ -603,34 +611,34 @@ html.ilock{scroll-behavior:auto!important}
           <div class="head-row"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><span class="more">See them →</span></div>
           <h3>Live websites</h3>
           <p class="sub">Seven sites running for real businesses in Southwest Florida.</p>
-          <div class="fan"><img src="thumb/site-aquamarine.jpg" alt=""><img src="thumb/site-sackett.jpg" alt=""><img src="thumb/site-trimviews.jpg" alt=""></div>
+          <div class="slot r2"><div class="browser"><div class="bar"><i></i><i></i><i></i><b></b></div><div class="scr"><img src="thumb/site-trimviews.jpg" alt=""><img src="thumb/site-aquamarine.jpg" alt=""><img src="thumb/site-sackett.jpg" alt=""></div></div></div>
         </article>
 
         <article class="card link c-niche" data-cat="packaging" tabindex="0" role="link" aria-label="See health and wellness work">
           <div class="head-row"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-9.3-9A5.3 5.3 0 0 1 12 6.6 5.3 5.3 0 0 1 21.3 12C19 16.6 12 21 12 21z"/></svg></div><span class="more">Take a look →</span></div>
           <h3>Health &amp; Wellness</h3>
           <p class="sub">Labels, logos and landing pages for clinics and peptide brands.</p>
-          <div class="quad"><img src="thumb/luvira-s.jpg" alt=""><img src="thumb/jovirx-women.jpg" alt=""><img src="thumb/novamdk-expert.jpg" alt=""><img src="thumb/mrx-drop.jpg" alt=""></div>
+          <div class="slot r2"><div class="niche"><img src="thumb/luvira-s.jpg" alt=""><img src="thumb/jovirx-women.jpg" alt=""><img src="thumb/peptidelounge.jpg" alt=""><img src="thumb/mrx-drop.jpg" alt=""></div></div>
         </article>
 
         <article class="card link c-tools" data-go="tools" tabindex="0" role="link" aria-label="See all tools">
           <div class="head-row"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5 5L21 13l-8 8-3-3 1.3-1.3a4 4 0 0 0-5-5L5 12l-2-2 8-8 2 2z"/></svg></div><span class="more" id="toolsmore"></span></div>
           <h3>Tools</h3>
           <p class="sub">What I design and work in every day.</p>
-          <div class="mini-tools" id="minitools"></div>
+          <div class="slot r2"><div class="mini-tools" id="minitools"></div></div>
         </article>
 
         <article class="card link c-svc" data-go="services" tabindex="0" role="link" aria-label="See all services">
           <div class="head-row"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></div><span class="more">All services →</span></div>
           <h3>Services</h3>
-          <ul class="list" id="svclist"></ul>
+          <div class="slot"><ul class="list" id="svclist"></ul></div>
         </article>
 
         <article class="card link c-about" data-go="about" tabindex="0" role="link" aria-label="Read about Aleah">
           <div class="head-row"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div><span class="more">Read my story →</span></div>
           <h3>About</h3>
           <p class="about-quote">Designer by craft, organizer by habit. The story behind the work, and how I keep projects moving.</p>
-          <div class="cards3"><img src="thumb/picatsso.jpg" alt=""><img src="thumb/motionrx-board-1.jpg" alt=""><img src="thumb/artroom-floral.jpg" alt=""></div>
+          <div class="slot"><div class="trio"><img src="thumb/picatsso.jpg" alt=""><img src="thumb/motionrx-board-1.jpg" alt="" style="object-position:top"><img src="thumb/artroom-floral.jpg" alt=""></div></div>
         </article>
       </div>
 
@@ -811,7 +819,7 @@ const P=[
  // Reels
  {id:'reel-metabolism',c:'reels',t:'“Fix Your Metabolism” Reel',s:'Vertical video',d:'Short wellness reel with bold captions over lifestyle footage.',m:[V('reel-metabolism',1)],f:1},
  {id:'reel-location',c:'reels',t:'Clinic Kiosk Promo Reel',s:'Vertical video',d:'Promo reel showing the website on an in-store kiosk screen, in a short and a long cut.',m:[V('reel-location',1),V('reel-location-long',1)]},
- {id:'reel-kiosk',c:'reels',t:'Clinic Kiosk Lifestyle Reel',s:'Vertical video',d:'Vertical promo reel pairing lifestyle footage with the in-store kiosk, made to drive scans and sign-ups.',m:[V('reel-kiosk',1)],f:1},
+ {id:'reel-kiosk',c:'reels',t:'Clinic Kiosk Lifestyle Reel',s:'Vertical video',d:'Vertical promo reel for the in-store kiosk: lifestyle footage with centered motion text walking viewers through how to explore care in a few simple steps.',m:[V('reel-kiosk',1)],f:1},
  {id:'kiosk-standby',c:'reels',t:'Kiosk Standby Screen Reel',s:'Vertical video',d:'Looping standby screen for an in-store health kiosk: a calm navy layout cycles through care plans, a three-step how-it-works sequence and a scan-to-host QR card, with a constant Tap to Begin prompt.',m:[V('kiosk-standby',1)]},
  // 3D
  {id:'samsung',c:'3d',t:'3D Smartphone Product Animation',s:'Made in Blender',d:'Phones rotate and drop in pink, black and blue.',note:'Disclaimer: I did not create the 3D phone model. I animated the lighting and the product movement in Blender, set up the camera movement in Blender, and added the music.',m:[V('samsung')]},
@@ -967,14 +975,14 @@ function stepProject(d){ const l=curList(); const k=l.indexOf(lb.p); openLB(l[(k
 function renderTools(){
   $('#toolgrid').innerHTML=TOOLS.map(t=>`<div class="tool"><div class="tool-top"><span class="tbadge" style="background:${t.c}">${t.a}</span><div><b>${t.n}</b><small>${LEVEL(t.v)}</small></div><div class="score">${t.v}<sub>/10</sub></div></div>${bar(t.v)}<p class="tuse">${t.u}</p></div>`).join('');
 }
-$('#minitools').innerHTML=TOOLS.slice(0,3).map(t=>`<div class="mt"><b>${t.n}</b><span>${t.v}/10</span>${bar(t.v)}</div>`).join('');
-$('#toolsmore').textContent=`+${TOOLS.length-3} more →`;
+$('#minitools').innerHTML=TOOLS.slice(0,4).map(t=>`<div class="mt"><b>${t.n}</b><span>${t.v}/10</span>${bar(t.v)}</div>`).join('');
+$('#toolsmore').textContent=`+${TOOLS.length-4} more →`;
 $('#svclist').innerHTML=SERVICES.slice(0,3).map(s=>`<li><span class="svc-ic"><i></i>${s.t}</span></li>`).join('')+`<li><span style="color:var(--burgundy);font-weight:600;font-size:13px">+${SERVICES.length-3} more</span></li>`;
 $('#svcgrid').innerHTML=SERVICES.map(s=>`<div class="svc"><h3>${s.t}</h3><p>${s.p}</p><ul>${s.l.map(x=>`<li>${x}</li>`).join('')}</ul><button class="see" type="button" data-cat="${s.c}">See ${CATS.find(c=>c.k===s.c).n} work →</button></div>`).join('');
 const imgCount=P.reduce((a,p)=>a+p.m.length,0);
 $('#workline').textContent=`${P.length} projects across ${CATS.length} categories. Here's a small taste.`;
 const PEEK=['motionrx','luvira','novamdk-social','artroom-posters'];
-$('#peek').innerHTML=PEEK.map(id=>{const m=byId[id].m[0];return `<img src="${m.src.replace('img/','thumb/')}" alt="" style="object-position:${byId[id].fit==='top'?'top':'center'}">`}).join('')+`<span class="pill b plus">+${P.length-PEEK.length} more</span>`;
+$('#peek').innerHTML=PEEK.map((id,k)=>{const q=byId[id],m=q.m[0];const img=`<img src="${(m.t==='vid'?m.poster:m.src).replace('img/','thumb/')}" alt="" style="object-position:${q.fit==='top'?'top':'center'}">`;return k===PEEK.length-1?`<div class="tile more-tile">${img}<span>+${P.length-PEEK.length+1}<small>more pieces</small></span></div>`:`<div class="tile">${img}</div>`}).join('');
 $('#motionline').textContent=`${P.filter(p=>p.w==='motion').length} animated pieces →`;
 document.querySelectorAll('.bento>.card').forEach((c,i)=>c.style.setProperty('--n',i));
 renderChips();
