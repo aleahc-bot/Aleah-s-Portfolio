@@ -623,7 +623,7 @@ html.ilock{scroll-behavior:auto!important}
         <dl class="stats" id="stats">
           <div><dt><span data-count="57">0</span></dt><dd>Projects</dd></div>
           <div><dt><span data-count="9">0</span></dt><dd>Categories</dd></div>
-          <div><dt><span data-count="7">0</span></dt><dd>Live websites</dd></div>
+          <div><dt><span data-count="9">0</span></dt><dd>Live websites</dd></div>
           <div><dt><span data-count="16">0</span></dt><dd>Animated pieces</dd></div>
         </dl>
       </div>
@@ -653,8 +653,8 @@ html.ilock{scroll-behavior:auto!important}
         <article class="card link c-sites" data-cat="web" data-sub-go="stills" tabindex="0" role="link" aria-label="See live websites">
           <div class="head-row"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><span class="more">See them →</span></div>
           <h3>Live websites</h3>
-          <p class="sub">Seven sites running for real businesses in Southwest Florida.</p>
-          <div class="slot r2"><div class="browser"><div class="bar"><i></i><i></i><i></i><b></b></div><div class="scr"><img src="thumb/site-trimviews.jpg" alt=""><img src="thumb/site-aquamarine.jpg" alt=""><img src="thumb/site-sackett.jpg" alt=""></div></div></div>
+          <p class="sub">Live sites for wellness brands and local businesses.</p>
+          <div class="slot r2"><div class="browser"><div class="bar"><i></i><i></i><i></i><b></b></div><div class="scr"><img src="thumb/site-motionrx.jpg" alt=""><img src="thumb/site-trimviews.jpg" alt=""><img src="thumb/site-helixmeds.jpg" alt=""></div></div></div>
         </article>
 
         <article class="card link c-niche" data-cat="packaging" tabindex="0" role="link" aria-label="See health and wellness work">
@@ -863,6 +863,8 @@ const P=[
  {id:'site-ajsyacht',c:'web',w:'stills',t:'Yacht Service Website',s:'Boat repair & restoration · Fort Myers',url:'https://ajsyachtservice.com/',m:[I('site-ajsyacht','top')],fit:'top',site:1},
  {id:'site-elite',c:'web',w:'stills',t:'Electrical Contractor Website',s:'Upfront pricing & online booking',url:'https://elite-electrical-contractor.vercel.app/',m:[I('site-elite-electrical','top')],fit:'top',site:1},
  {id:'site-sackett',c:'web',w:'stills',t:'Plumbing Company Website',s:'Repair, remodel & water heaters',url:'https://www.sackettplumbing.com/',m:[I('site-sackett','top')],fit:'top',site:1},
+ {id:'site-motionrx',c:'web',w:'stills',t:'IV Therapy & Wellness Clinic Website',s:'Full website · Costa Mesa, California',d:'Calm, editorial website for an IV therapy and wellness clinic: full-bleed lifestyle hero, featured services grid, benefits, a three-step care ritual, patient stories, press and FAQ.',url:'https://www.motionrx.co/',m:[I('site-motionrx','top'),I('motionrx-web-services','top'),I('motionrx-web-oasis','top'),I('motionrx-web-benefits','top'),I('motionrx-web-ritual','top'),I('motionrx-web-faq','top')],fit:'top',site:1,f:1},
+ {id:'site-helixmeds',c:'web',w:'stills',t:'Research Peptide Brand Website',s:'E-commerce landing page',d:'Dark, product-led landing page for a research peptide brand, with a bold condensed headline and a splash-shot vial hero.',url:'https://helixmeds.vercel.app/',m:[I('site-helixmeds','top')],fit:'top',site:1},
  {id:'site-minnicks',c:'web',w:'stills',t:'Concrete Contractor Website',s:'Residential & commercial · Southwest Florida',url:'https://www.minnicksconcrete.com/',m:[I('site-minnicks','top')],fit:'top',site:1},
  // Reels
  {id:'reel-metabolism',c:'reels',t:'“Fix Your Metabolism” Reel',s:'Vertical video',d:'Short wellness reel with bold captions over lifestyle footage.',m:[V('reel-metabolism',1)],f:1},
@@ -1204,6 +1206,7 @@ watchVideos(document);
   nums.find(n=>n.dataset.count==='57')&&(nums[0].dataset.count=String(P.length));
   const vids=P.reduce((a,p)=>a+(p.m[0].t==='vid'?1:0),0); if(nums[3])nums[3].dataset.count=String(vids);
   if(nums[1])nums[1].dataset.count=String(CATS.length);
+  if(nums[2])nums[2].dataset.count=String(P.filter(p=>p.site).length);
   function count(){ nums.forEach((n,k)=>{ const to=+n.dataset.count; if(isCalm()){n.textContent=to;return;} const t0=performance.now()+k*120, d=1400;
     const f=t=>{ const x=Math.max(0,Math.min(1,(t-t0)/d)); const e=1-Math.pow(1-x,3); n.textContent=Math.round(to*e); if(x<1)requestAnimationFrame(f); }; requestAnimationFrame(f); }); }
   const startCount=()=>{ if(document.documentElement.classList.contains('hold')){ setTimeout(startCount,300); return; } setTimeout(count,500); };
