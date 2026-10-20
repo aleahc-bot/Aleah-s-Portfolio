@@ -137,7 +137,7 @@ p{margin:0}
 .note{display:block;margin-top:8px;font-style:italic;color:#f3d9df}
 .cnote{font-size:12px;color:var(--ink-2);font-style:italic;background:var(--burgundy-tint);border-radius:8px;padding:8px 10px;margin-top:4px;line-height:1.45}
 
-.view{margin-top:28px}
+.view{margin-top:28px;min-height:calc(100vh - 120px)}
 .view[hidden]{display:none!important}
 
 /* Bento */
@@ -170,7 +170,9 @@ p{margin:0}
 .tool-top{display:flex;align-items:center;gap:14px}
 .tbadge{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:15px;flex:none}
 .tool-top div{flex:1;min-width:0}
-.tool-top b{display:block;font-size:16px}
+.tool-top b{display:block;font-size:16px;line-height:1.25}
+.tool-top{align-items:flex-start}
+.tool-top .score{white-space:nowrap}
 .tool-top small{color:var(--burgundy);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
 .tuse{color:var(--muted);font-size:13.5px}
 .score{font-size:26px;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
@@ -620,12 +622,6 @@ html.ilock{scroll-behavior:auto!important}
         <div class="eyebrow">Branding · Packaging · Web · Social</div>
         <h1 class="headline" aria-label="Designed with intention"><span class="w" style="--i:0">Designed</span> <span class="w" style="--i:1">with</span> <span class="w ul" style="--i:2"><em>intention</em></span></h1>
         <p class="lede">I design brand identities, product labels, websites and social campaigns for health, wellness and local service businesses. I also handle the reports and client updates that keep every project on schedule.</p>
-        <dl class="stats" id="stats">
-          <div><dt><span data-count="57">0</span></dt><dd>Projects</dd></div>
-          <div><dt><span data-count="9">0</span></dt><dd>Categories</dd></div>
-          <div><dt><span data-count="9">0</span></dt><dd>Live websites</dd></div>
-          <div><dt><span data-count="16">0</span></dt><dd>Animated pieces</dd></div>
-        </dl>
       </div>
       <a class="btn" href="#contact" data-view="contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </div>
@@ -892,15 +888,20 @@ const P=[
  {id:'email-artforheart',c:'reports',t:'Collaboration Outreach Email',s:'Client communication',d:'Follow-up email proposing a workshop collaboration.',m:[I('email-artforheart','contain')],fit:'contain'}
 ];
 const TOOLS=[
- {n:'Canva',c:'#00a7b5',a:'Cv',v:10,u:'Social posts, posters and quick brand assets'},
+ {n:'Canva',c:'#00a7b5',a:'Cv',v:9,u:'Social posts, posters and quick brand assets'},
  {n:'Google Workspace',c:'#2f8f5b',a:'Gw',v:9,u:'Reports, docs, sheets and client email'},
  {n:'CapCut',c:'#1c1416',a:'Cc',v:8,u:'Reels and short promo videos'},
  {n:'Claude',c:'#b8573a',a:'Cl',v:8,u:'Research, copy drafts and planning'},
  {n:'Adobe Photoshop',c:'#1d5fa6',a:'Ps',v:7,u:'Photo editing, mockups and composites'},
+ {n:'Squarespace',c:'#2a2a2a',a:'Sq',v:7,u:'Website builds and page updates'},
+ {n:'WordPress',c:'#21759b',a:'Wp',v:7,u:'Website content, pages and updates'},
  {n:'Adobe Illustrator',c:'#c96a00',a:'Ai',v:6,u:'Logos, labels and vector artwork'},
- {n:'Figma',c:'#7b4fd6',a:'Fg',v:5,u:'Website layouts and UI screens'}
+ {n:'Figma',c:'#7b4fd6',a:'Fg',v:5,u:'Website layouts and UI screens'},
+ {n:'Blender',c:'#e87d0d',a:'Bl',v:4,u:'3D product lighting and animation'},
+ {n:'Adobe Premiere Pro',c:'#4b2a9e',a:'Pr',v:4,u:'Video editing and simple cuts'},
+ {n:'GoHighLevel',c:'#1f6feb',a:'GH',v:3,u:'Email campaigns and marketing pages'}
 ];
-const LEVEL=v=>v>=10?'Expert':v>=8?'Advanced':v>=6?'Proficient':'Intermediate';
+const LEVEL=v=>v>=9?'Expert':v>=8?'Advanced':v>=6?'Proficient':v>=4?'Intermediate':'Beginner';
 const bar=(v,anim)=>`<div class="bar" role="img" aria-label="${v} out of 10">${Array.from({length:10},(_,k)=>`<i class="${k<v?'on':''}" style="--k:${k}"></i>`).join('')}</div>`;
 const SERVICES=[
  {t:'Brand identity',c:'branding',p:'Logos, brand boards, color and type systems, mascots and merch.',l:['Logo','Brand board','Mascot','Merch']},
@@ -965,6 +966,13 @@ function show(view){
   if(view==='tools')renderTools();
   if(view!=='projects'&&view!=='project'&&state.cat!=='all'){state.cat='all';state.sub='all';renderChips();}
   if(view!=='project'&&location.hash.slice(1)!==view)history.replaceState(null,'','#'+view);
+}
+function keepBar(fn){
+  const bar=$('.cats'), mb=document.querySelector('.mbar'), off=(mb&&mb.offsetHeight)?mb.offsetHeight+10:12;
+  const before=bar.getBoundingClientRect().top, stuck=before<=off+12;
+  fn();
+  const y=Math.max(0,bar.getBoundingClientRect().top+scrollY-off);
+  if(stuck){ if(Math.abs(scrollY-y)>1) scrollTo({top:y,behavior:'instant'}); }
 }
 function go(view,scroll=true){show(view); if(scroll){const t=$('.cats'); const mb=document.querySelector('.mbar'); const off=(mb&&mb.offsetHeight)?mb.offsetHeight+10:12; const y=view==='home'?0:t.getBoundingClientRect().top+scrollY-off; scrollTo({top:Math.max(0,y),behavior:isCalm()?'auto':'smooth'});}}
 
@@ -1040,7 +1048,7 @@ renderChips();
 // Events
 document.addEventListener('click',e=>{
   if(e.target.closest('[data-stop]'))return;
-  const chip=e.target.closest('[data-cat]'); if(chip){state.cat=chip.dataset.cat;state.sub=chip.dataset.subGo||'all';renderChips();go('projects');renderProjects();return;}
+  const chip=e.target.closest('[data-cat]'); if(chip){state.cat=chip.dataset.cat;state.sub=chip.dataset.subGo||'all';const inBar=!!e.target.closest('.cats');const sl=$('#chips').scrollLeft;renderChips();$('#chips').scrollLeft=sl;if(inBar){keepBar(()=>{show('projects');renderProjects();});}else{go('projects');renderProjects();}return;}
   const sub=e.target.closest('[data-sub]'); if(sub){state.sub=sub.dataset.sub;renderProjects();return;}
   const v=e.target.closest('a[data-view]'); if(v){e.preventDefault();go(v.dataset.view);return;}
   const g=e.target.closest('[data-go]'); if(g&&!e.target.closest('a')){go(g.dataset.go);return;}
